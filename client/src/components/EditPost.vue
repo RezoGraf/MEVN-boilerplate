@@ -3,13 +3,19 @@
     <h1>Edit Post</h1>
       <div class="form">
         <div>
-          <input type="text" name="title" placeholder="TITLE" v-model="title">
+          <input type="date" name="title" placeholder="Дата" v-model="numberPost">
         </div>
         <div>
-          <textarea rows="15" cols="15" placeholder="DESCRIPTION" v-model="description"></textarea>
+          <textarea rows="1" cols="5" placeholder="Кому" v-model="description"></textarea>
         </div>
         <div>
-          <button class="app_post_btn" @click="updatePost">Update</button>
+          <textarea rows="1" cols="5" placeholder="О чем" v-model="soderzh"></textarea>
+        </div>
+        <div>
+          <textarea rows="1" cols="5" placeholder="От кого" v-model="fiootpr"></textarea>
+        </div>
+        <div>
+          <button class="app_post_btn" @click="updatePost">Обновить</button>
         </div>
       </div>
   </div>
@@ -21,8 +27,11 @@ export default {
   name: 'editpost',
   data () {
     return {
-      title: '',
-      description: ''
+      numberPost: '',
+      datePost: '',
+      forPost: '',
+      soderzhPost: '',
+      fiootprPost: ''
     }
   },
   mounted () {
@@ -33,15 +42,21 @@ export default {
       const response = await PostsService.getPost({
         id: this.$route.params.id
       })
-      this.title = response.data.title
-      this.description = response.data.description
+      this.numberPost = response.data.numberPost
+      this.datePost = response.data.datePost
+      this.forPost = response.data.forPost
+      this.soderzhPost = response.data.soderzhPost
+      this.fiootprPost = response.data.fiootprPost
       // this.$router.push({ name: 'Posts' })
     },
     async updatePost () {
       await PostsService.updatePost({
         id: this.$route.params.id,
-        title: this.title,
-        description: this.description
+        numberPost: this.numberPost,
+        datePost: this.datePost,
+        forPost: this.forPost,
+        soderzhPost: this.soderzhPost,
+        fiootprPost: this.fiootprPost
       })
       this.$swal(
         'Great!',

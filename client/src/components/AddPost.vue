@@ -1,16 +1,33 @@
+
 <template>
   <div class="posts">
-    <h1>Add Post</h1>
+    <h1>Добавить письмо</h1>
       <div class="form">
+
         <div>
-          <input type="text" name="title" placeholder="TITLE" v-model="title">
+            <input type="text" name="numberPost" width="600" placeholder="Номер" v-model="numberPost">
         </div>
         <div>
-          <textarea rows="15" cols="15" placeholder="DESCRIPTION" v-model="description"></textarea>
+          <input type="date" name="datePost" placeholder="Дата" v-model="datePost">
         </div>
         <div>
-          <button class="app_post_btn" @click="addPost">Add</button>
+          <input type="text" name="forPost" placeholder="Кому" v-model="forPost">
         </div>
+        <div>
+          <input type="text" name="soderzhPost" placeholder="Содержание" v-model="soderzhPost">
+        </div>
+        <div> 
+          <select v-model="fiootprPost">
+            <option disabled value="">От кого</option>
+            <option>Иванов П. А.</option>
+            <option>Петров Е. В.</option>
+            <option>Сидоров О. Ю.</option>
+          </select>
+        </div>
+        <div>
+          <button class="app_post_btn" @click="addPost">Записать</button>
+        </div>
+
       </div>
   </div>
 </template>
@@ -21,19 +38,25 @@ export default {
   name: 'addpost',
   data () {
     return {
-      title: '',
-      description: ''
+      numberPost: '',
+      datePost: '',
+      forPost: '',
+      soderzhPost: '',
+      fiootprPost: ''
     }
   },
   methods: {
     async addPost () {
       await PostsService.addPost({
-        title: this.title,
-        description: this.description
+        numberPost: this.numberPost,
+        datePost: this.datePost,
+        forPost: this.forPost,
+        soderzhPost: this.soderzhPost,
+        fiootprPost: this.fiootprPost
       })
       this.$swal(
-        'Great!',
-        `Your post has been added!`,
+        'Отлично!',
+        `Номер вашего сообщения опубликован!`,
         'success'
       )
       this.$router.push({ name: 'Posts' })
