@@ -7,7 +7,7 @@ A skeleton generated with MEVN stack technologies which can be used as a boilerp
 
 
 ## Setup Development Machine
-1. Clone the repo `git clone git@github.com:anaida07/MEVN-boilerplate.git`
+1. Clone the repo `git clone git@github.com:RezoGraf/MEVN-boilerplate.git`
 
 2. `cd MEVN-boilerplate`
 
